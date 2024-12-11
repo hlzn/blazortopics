@@ -1,0 +1,23 @@
+@typeparam T
+
+<table>
+    <thead>
+        @Header
+    </thead>
+    <tbody>
+        @foreach (var item in Items.Take(10))
+        {
+            @RowTemplate(item)
+        }
+    </tbody>
+</table>
+
+
+@code {
+    [Parameter, EditorRequired]
+    public IList<T> Items { get; set; }
+    [Parameter, EditorRequired]
+    public RenderFragment Header { get; set; }
+    [Parameter, EditorRequired]
+    public RenderFragment<T> RowTemplate { get; set; }
+}

@@ -1,0 +1,32 @@
+@using BlazorEx01.Data
+@using Microsoft.AspNetCore.Mvc;
+@rendermode InteractiveServer
+@page "/offer"
+
+<GridComponent Items="@Samples.Tickets">
+    <Header>
+        <tr>
+            <th>Id</th>
+            <th>Tariff</th>
+            <th>Price</th>
+            <th>Available Seats</th>
+            <th></th>
+        </tr>
+    </Header>
+    <RowTemplate>
+        <tr>
+            <td>@context.Id</td>
+            <td>@context.Tariff</td>
+            <td>@context.Price</td>
+            <td>@context.AvailableSeats</td>
+            <td><button @onclick="() => Add(context)">Add</button></td>
+        </tr>
+    </RowTemplate>
+</GridComponent>
+
+@code {
+    public void Add(TicketViewModel ticket) 
+    {
+        Console.WriteLine($"Ticket added: {ticket.Id}");
+    }
+}    
